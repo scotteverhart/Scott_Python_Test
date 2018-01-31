@@ -28,7 +28,7 @@ def main():
     """Main entry point for the script."""
 
     print
-    
+
     response = requests.get(url)
 
     verify_response_is_valid(response)

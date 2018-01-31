@@ -3,7 +3,7 @@ import sys
 import requests
 from bs4 import BeautifulSoup
 
-url = 'https://blog.docker.com/category/engineering/'
+url = 'http://localhost/pythonTest/this_is_a_test.html'
 
 blog_list = []
 response_date = []
@@ -16,6 +16,10 @@ def verify_url_response_data(response_data):
 
 
 def verify_response_is_valid(response):
+    if response:
+        print response.text
+        pass
+
     if not response:
         exit(2)
 
@@ -23,6 +27,8 @@ def verify_response_is_valid(response):
 def main():
     """Main entry point for the script."""
 
+    print
+    
     response = requests.get(url)
 
     verify_response_is_valid(response)
@@ -31,8 +37,7 @@ def main():
 
     verify_url_response_data(response_data)
 
-    for each_title in response_data.find_all(lambda tag: tag.name == 'h2'
-                                                         and tag.get('class') == ['entry-title']):
+    for each_title in response_data.find_all(lambda tag: tag.name == 'li'):
         blog_title = each_title.text
         if blog_title != 'X':
             blog_list.append(blog_title)
@@ -40,7 +45,7 @@ def main():
     print
 
     for blog_data in blog_list:
-        print "blog_data-" + str(blog_list.index(blog_data)) + ": " + blog_data
+        print "blog_data[" + str(blog_list.index(blog_data)) + "] = " + blog_data
 
     print
 

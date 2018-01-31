@@ -10,3 +10,5 @@ str2 = '12345'
 print 'str2 = ' + str2
 float1 = 1234.1234
 print 'float1 = ' + str(float1)
+print
+print 'end of program'
